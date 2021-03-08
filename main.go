@@ -11,7 +11,7 @@ func test(c *gin.Context) {
 
 func main() {
 	r := gin.New()
-	r.GET("/",lib.Limiter(3)(test))
+	r.GET("/",lib.ParamLimiter(5,1,"name")(lib.Limiter(10)(test)))
 
 	r.Run(":8080")
 }
